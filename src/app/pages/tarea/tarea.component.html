@@ -1,0 +1,50 @@
+<header class="pt-3 ps-3 mb-2 bg-danger bg-gradient text-white">
+  <div class="d-flex justify-content-between">
+    <h1 class="">TASKSOCIAL</h1>
+    <div class="btn-group pe-5">
+      <button type="button" class="btn btn-danger bg-gradient border-white mb-2 dropdown-toggle"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <span>{{ username }}</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+        <li><a class="dropdown-item" href="#">Mis amigos</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<h2>Mis tareas</h2>
+<button class="btn btn-primary" (click)="deleteCompleted()">Eliminar tareas completadas </button>
+
+<form (ngSubmit)="createTask()">
+  <div>
+    <label for="titulo">TITULO:</label>
+    <input type="text" id="titulo" [(ngModel)]="newTask.titulo" name="titulo" required />
+  </div>
+  <div>
+    <label for="descripcion">DESCRIPCION:</label>
+    <textarea id="descripcion" [(ngModel)]="newTask.descripcion" name="descripcion" required></textarea>
+  </div>
+  <button class="btn btn-success" type="submit">CREAR TAREA</button>
+</form>
+
+
+
+
+<div style="padding:0 20%;">
+  <div class="text-center border border-dark rounded bg-gradient text-white" style="background-color: rgb(238, 66, 66);">
+  @for(tarea of tareas; track $index){
+  <app-tarea-card class="m-5" 
+  [tarea]="tarea" 
+  (update)="updateTask($event)"
+  (delete)="deleteTask($event)"
+  >
+</app-tarea-card>
+}
+</div>
+</div>

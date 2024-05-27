@@ -1,0 +1,36 @@
+<div class="position-absolute top-50 start-50 translate-middle">
+
+<div class="container border border-3 border-danger rounded">
+
+  <form class="form-group" (ngSubmit)="login()"> 
+
+    <div class="bg p-5">
+      <h2 class="text-center fs-1">Inicia sesión</h2>
+      
+      <label for="email" 
+             class="form-label mt-3 fw-semibold fs-6">Email:</label>
+      <input type="email" 
+             class="form-control" 
+             id="email"
+             placeholder="name@example.com"
+             name="email"
+             [(ngModel)]="email" 
+             >
+
+      <label for="password" 
+             class="form-label mt-3 fw-semibold fs-6">Password:</label>
+
+      <input type="password" 
+             class="form-control" 
+             id="password"
+             name="password"
+             placeholder="tusupercontraseña"
+             [(ngModel)]="password"
+             >
+
+      <input type="submit" class="form-control btn btn-danger mt-3" value="entrar">
+    </div>
+  </form>
+  <p class="text-center ">¿Aun no se ha registrado? <a routerLink="/register" class="text-decoration-none"> Registrate.</a></p>
+</div>
+</div>

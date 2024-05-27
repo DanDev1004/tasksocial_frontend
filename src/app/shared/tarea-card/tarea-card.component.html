@@ -1,0 +1,48 @@
+
+<div>
+  <details class="ps-4 text-start">
+    <summary class="d-block border-bottom"> @if(tarea.estado=='HECHO'){
+      <h3 class="text-decoration-line-through fs-2">{{ tarea.titulo }}</h3>
+    }@else {
+      <h3 class="fs-2">{{ tarea.titulo }}</h3>
+    }</summary>
+
+    <div class="bg-light text-dark rounded p-2 me-4">
+      <p>{{ tarea.descripcion }}</p>
+    <p>Status: {{ tarea.estado }}</p>
+
+    <button (click)="toggleEdit()" 
+    class="btn btn-warning me-2"
+     >EDITAR</button>
+
+    <button (click)="deleteTask()" 
+            class="btn btn-danger"
+            >ELIMINAR</button>   
+
+
+            <div>
+              @if (isEditing){
+                <form (ngSubmit)="saveTask()">
+                  <div>
+                    <label for="titulo">TITULO:</label>
+                    <input type="text" id="titulo" [(ngModel)]="tarea.titulo" name="titulo" required />
+                   </div>
+                   <div>
+                     <label for="descripcion">DESCRIPCION:</label>
+                     <textarea id="descripcion" [(ngModel)]="tarea.descripcion" name="descripcion" required></textarea>
+                   </div>
+                   <div>
+                     <label for="estado">ESTADO:</label>
+                     <select id="estado" [(ngModel)]="tarea.estado" name="estado">
+                       <option value="ABIERTO">ABIERTO</option>
+                       <option value="PROGRESO">PROGRESO</option>
+                       <option value="HECHO">HECHO</option>
+                     </select>
+                   </div>
+                   <button class="btn btn-primary" type="submit">ACTUALIZAR</button>
+             </form>
+           }
+           </div>
+    </div>
+  </details>
+</div>

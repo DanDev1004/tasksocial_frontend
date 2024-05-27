@@ -1,0 +1,44 @@
+<div class="position-absolute top-50 start-50 translate-middle">
+
+  <div class="container border border-3 border-danger rounded">
+  
+    <form class="form-group" 
+    ngNativeValidate
+    [formGroup]="userForm"
+    (ngSubmit)="registrarUsuario()"> 
+  
+      <div class="bg p-5">
+        <h2 class="text-center fs-1">Registrarse</h2>
+        <label for="username" 
+        class="form-label mt-3 fw-semibold fs-6" >Username:</label>
+
+        <input type="text" id="username"
+              class="form-control"  
+              formControlName="username"
+              placeholder="username123"
+              name="username" required />
+
+        <label for="email" 
+               class="form-label mt-3 fw-semibold fs-6" >Email:</label>
+
+        <input type="text" id="username"
+                     class="form-control"  
+                     formControlName="email"
+                     placeholder="name@example.com"
+                     name="email" required />
+
+                     <label for="password" 
+                     class="form-label mt-3 fw-semibold fs-6" >Password:</label>
+      
+              <input type="password" id="password"
+                           class="form-control"  
+                           formControlName="password"
+                           placeholder="tusupercontraseña"
+                           name="password" required />
+  
+        <input type="submit" class="form-control btn btn-danger mt-3" value="comenzar">
+      </div>
+    </form>
+    <p class="text-center">¿Ya tiene una cuenta? <a routerLink="/login" class="text-decoration-none">inicia sesion.</a></p>
+  </div>
+  </div>
