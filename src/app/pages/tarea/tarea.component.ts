@@ -49,7 +49,7 @@ export class TareaComponent implements OnInit {
       this.newTask.usuario_id = usuario_id;
       this.tareaService.createTarea(this.newTask).subscribe(
         () => this.loadTasks(),
-        (error) => console.error('Create task failed', error)
+        (error) => console.error('Fallo al crear tarea', error)
       );
     }
   }
@@ -57,23 +57,23 @@ export class TareaComponent implements OnInit {
   updateTask(tarea: Tarea): void {
     this.tareaService.updateTarea(tarea).subscribe(
       () => this.loadTasks(),
-      (error) => console.error('Update task failed', error)
+      (error) => console.error('Fallo al actualizar tarea', error)
     );
   }
 
   deleteTask(id: number): void {
     this.tareaService.deleteTarea(id).subscribe(
       () => this.loadTasks(),
-      (error) => console.error('Delete task failed', error)
+      (error) => console.error('Fallo al eliminar tarea', error)
     );
   }
 
   deleteCompleted(): void {
     const usuario_id = this.tokenService.getUserId();
-    if (usuario_id) {
+    if (usuario_id){
       this.tareaService.deleteCompleted(usuario_id).subscribe(
         () => this.loadTasks(),
-        (error) => console.error('Delete completed tasks failed', error)
+        (error) => console.error('Fallo al eliminar tareas completadas', error)
       );
     }
   }

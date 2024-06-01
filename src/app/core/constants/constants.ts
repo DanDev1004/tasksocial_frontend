@@ -6,7 +6,7 @@ export const constants = {
   
   export const apiEndpoint = {
     AuthEndpoint: {
-      login: `${apiurl}/auth?action=login`,
+      login: `${apiurl}/auth?action=login`,  
       register: `${apiurl}/auth?action=register`,
     },
     TareaEndpoint: {

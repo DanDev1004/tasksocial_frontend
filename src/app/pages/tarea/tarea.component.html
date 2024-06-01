@@ -7,36 +7,65 @@
         <span>{{ username }}</span>
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-        <li><a class="dropdown-item" href="#">Mis amigos</a></li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
+        <!-- 
+          <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+          <li><a class="dropdown-item" href="#">Mis amigos</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+        -->
         <li><a class="dropdown-item" href="#" (click)="logout()">Cerrar sesión</a></li>
       </ul>
     </div>
   </div>
 </header>
 
-<h2>Mis tareas</h2>
-<button class="btn btn-primary" (click)="deleteCompleted()">Eliminar tareas completadas </button>
-
-<form (ngSubmit)="createTask()">
-  <div>
-    <label for="titulo">TITULO:</label>
-    <input type="text" id="titulo" [(ngModel)]="newTask.titulo" name="titulo" required />
-  </div>
-  <div>
-    <label for="descripcion">DESCRIPCION:</label>
-    <textarea id="descripcion" [(ngModel)]="newTask.descripcion" name="descripcion" required></textarea>
-  </div>
-  <button class="btn btn-success" type="submit">CREAR TAREA</button>
-</form>
-
-
+<h2 class="text-center">MIS TAREAS</h2>
 
 
 <div style="padding:0 20%;">
+  <div>
+    <!-- Button trigger modal -->
+<div class="d-flex justify-content-between">
+  <button type="button" class="btn btn-primary mb-2 border-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    NUEVA TAREA 
+  </button>
+  
+  <button class="btn btn-primary mb-2 border-dark" (click)="deleteCompleted()">ELIMINAR TAREAS COMPLETADAS</button>
+  
+</div>
+
+<!-- Modal -->
+<form (ngSubmit)="createTask()">
+<div class="modal fade" id="exampleModal"
+data-bs-backdrop="static" data-bs-keyboard="false" 
+  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Crea una nueva tarea</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="titulo" [(ngModel)]="newTask.titulo" name="titulo" required />
+            <label class="fs-6" for="floatingInputInvalid">Titulo:</label>
+          </div>
+
+          <div class="form-floating">
+            <textarea class="form-control" id="descripcion" [(ngModel)]="newTask.descripcion" name="descripcion" style="height: 250px" required></textarea>
+            <label class="fs-6" for="floatingTextarea2">Descripción:</label>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">CREAR TAREA</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+  </div>
   <div class="text-center border border-dark rounded bg-gradient text-white" style="background-color: rgb(238, 66, 66);">
   @for(tarea of tareas; track $index){
   <app-tarea-card class="m-5" 

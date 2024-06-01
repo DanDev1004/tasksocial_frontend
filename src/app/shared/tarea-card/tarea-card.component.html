@@ -1,48 +1,86 @@
 
 <div>
   <details class="ps-4 text-start">
-    <summary class="d-block border-bottom"> @if(tarea.estado=='HECHO'){
-      <h3 class="text-decoration-line-through fs-2">{{ tarea.titulo }}</h3>
+    <summary class="d-block border-bottom border-white me-4"> 
+      
+  <div class="d-flex justify-content-between">
+    @if(tarea.estado=='HECHO'){
+      <h3 class="text-decoration-line-through fs-2">{{ tarea.titulo }}</h3>  
     }@else {
-      <h3 class="fs-2">{{ tarea.titulo }}</h3>
-    }</summary>
-
-    <div class="bg-light text-dark rounded p-2 me-4">
-      <p>{{ tarea.descripcion }}</p>
-    <p>Status: {{ tarea.estado }}</p>
+        <h3 class="fs-2">{{ tarea.titulo }}</h3>
+    }
+        <div class="d-flex">
+          <div>
+            <input class="form-check-input me-3 border border-dark" 
+                   style="padding: 14px; margin-top: 0.2px;" 
+                   type="checkbox"
+                   id="checkboxNoLabel"
+                   [checked]="tarea.estado === 'HECHO'"
+                   (change)="toggleTaskState($event)">
+                   
+          </div>
+          
+          <button (click)="deleteTask()" 
+          type="button"
+        class="btn-close border border-black bg-light p-2" 
+        aria-label="Close"
+        ></button>   
+        </div>
+      </div>
+    </summary>
+    
+    <div class="bg-light text-dark rounded-bottom p-2 me-4">
+      <pre  class="text-break fs-5" style="max-height: 170px; overflow-y: auto; white-space: pre-wrap;">{{ tarea.descripcion }}</pre>
+    <p>Estado: {{ tarea.estado }}</p>
 
     <button (click)="toggleEdit()" 
-    class="btn btn-warning me-2"
+    class="btn btn-warning me-2 border border-dark text-white"
      >EDITAR</button>
 
-    <button (click)="deleteTask()" 
-            class="btn btn-danger"
-            >ELIMINAR</button>   
 
+     @if (isEditing){
+      <div class="overlay">
 
-            <div>
-              @if (isEditing){
+        <div class="
+                z-1 position-absolute rounded-3            
+                top-50 start-50 translate-middle
+                bg-light
+                custom-card-container
+                "
+                style="width: 40%; height: 200px; margin-top: -125px;"
+                
+                >
                 <form (ngSubmit)="saveTask()">
-                  <div>
-                    <label for="titulo">TITULO:</label>
-                    <input type="text" id="titulo" [(ngModel)]="tarea.titulo" name="titulo" required />
-                   </div>
-                   <div>
-                     <label for="descripcion">DESCRIPCION:</label>
-                     <textarea id="descripcion" [(ngModel)]="tarea.descripcion" name="descripcion" required></textarea>
-                   </div>
-                   <div>
-                     <label for="estado">ESTADO:</label>
-                     <select id="estado" [(ngModel)]="tarea.estado" name="estado">
-                       <option value="ABIERTO">ABIERTO</option>
-                       <option value="PROGRESO">PROGRESO</option>
-                       <option value="HECHO">HECHO</option>
-                     </select>
-                   </div>
-                   <button class="btn btn-primary" type="submit">ACTUALIZAR</button>
-             </form>
+                  
+                  <div class="card text-center custom-card" style="width: 100%; height: 100%;">
+                    <div class="card-header text-start fs-5  bg-white p-4">
+                     <div class="d-flex justify-content-between">
+                      <p>Actualizar tarea</p>
+                      <button  (click)="cancelEdit()" type="button" class="btn-close" aria-label="Close"></button>  
+                     </div>
+                    </div>
+                    <div class="card-body text-start">
+                      
+                      <div class="form-floating mb-3">
+                        <input class="form-control" type="text" id="titulo" [(ngModel)]="tarea.titulo" name="titulo" required />
+                        <label class="fs-6" for="floatingInputInvalid">Titulo:</label>
+                    </div>
+          
+                    <div class="form-floating">
+                      <textarea class="form-control" id="descripcion" [(ngModel)]="tarea.descripcion" name="descripcion" style="height: 250px" required></textarea>
+                      <label class="fs-6" for="floatingTextarea2">Descripción:</label>
+                    </div>
+
+                  </div>
+                  <div class="card-footer text-end bg-white">
+                    <button class="btn btn-primary" type="submit">ACTUALIZAR</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            
+          </div>
            }
-           </div>
     </div>
   </details>
 </div>
