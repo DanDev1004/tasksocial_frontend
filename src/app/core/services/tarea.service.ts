@@ -29,4 +29,11 @@ export class TareaService {
   deleteCompleted(usuario_id: number): Observable<void> {
     return this.http.post<void>(apiEndpoint.TareaEndpoint.deleteCompleted, { usuario_id });
   }
+
+  
+  generatePDF(usuario_id: number): Observable<Blob> {
+    return this.http.get(`${apiEndpoint.TareaEndpoint.generatePDF}?usuario_id=${usuario_id}`, {
+      responseType: 'blob'
+    });
+  }
 }

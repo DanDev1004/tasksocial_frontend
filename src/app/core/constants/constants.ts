@@ -15,6 +15,7 @@ export const constants = {
       update: `${apiurl}/tareas?action=actualizar`,
       delete: `${apiurl}/tareas?action=eliminar`,
       deleteCompleted: `${apiurl}/tareas?action=eliminarHechas`,
+      generatePDF: `${apiurl}/pdf`,
     },
   };
   

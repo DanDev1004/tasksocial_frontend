@@ -5,6 +5,7 @@ import { TokenService } from '../../core/services/token.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TareaCardComponent } from '../../shared/tarea-card/tarea-card.component';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-tarea',
@@ -78,8 +79,19 @@ export class TareaComponent implements OnInit {
     }
   }
 
+
+  generatePDF(): void {
+    const usuario_id = this.tokenService.getUserId();
+    this.tareaService.generatePDF(usuario_id!).subscribe((response: Blob) => {
+      saveAs(response, 'mis_tareas.pdf');
+    });
+  }
+
+
   logout(): void {
     this.tokenService.clearToken();
     this.router.navigate(['login']);
   }
 }
+
+
